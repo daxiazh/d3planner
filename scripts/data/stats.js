@@ -1,12 +1,12 @@
 (function() {
-  DiabloCalc.elements = {
-    arc: "Arcane",
-    col: "Cold",
-    fir: "Fire",
-    hol: "Holy",
-    lit: "Lightning",
-    phy: "Physical",
-    psn: "Poison",
+  DiabloCalc.elements = { // 伤害类型
+    arc: "Arcane",    // 奥术
+    col: "Cold",      // 冰霜
+    fir: "Fire",      // 火系
+    hol: "Holy",      // 神圣
+    lit: "Lightning", // 闪电
+    phy: "Physical",  // 物理
+    psn: "Poison",    // 毒性
   };
   DiabloCalc.stats = {
     basearmor: {name: "Base Armor", base: true},

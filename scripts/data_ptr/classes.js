@@ -1,10 +1,11 @@
 DiabloCalc.minLevel = 70;
 DiabloCalc.maxLevel = 70;
 
+// 定义角色类型
 DiabloCalc.classes = {
-  wizard: {
-    name: "Wizard",
-    primary: "int",
+  wizard: {         // 魔法师
+    name: "Wizard", // 显示的名称
+    primary: "int", // 主属性,智力
     imageSuffix: "wizard_male",
     imageSuffixAlt: "wizard_female",
     resources: ["ap"],
@@ -16,13 +17,13 @@ DiabloCalc.classes = {
     imageSuffixAlt: "demonhunter_female",
     resources: ["hatred", "disc"],
   },
-  barbarian: {
+  barbarian: {    // 野蛮人
     name: "Barbarian",
     dualwield: true,
     primary: "str",
     imageSuffix: "barbarian_male",
     imageSuffixAlt: "barbarian_female",
-    resources: ["fury"],
+    resources: ["fury"],  // 技能消耗的资源类型
   },
   witchdoctor: {
     name: "Witch Doctor",

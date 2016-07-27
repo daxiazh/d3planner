@@ -93,21 +93,23 @@
   }
 
   function Stats() {
+    // 初始化属性
     this.info = {
       level: parseInt($(".char-level").val()),
       gems: 0,
       ancients: 0,
     };
     this.charClass = DC.charClass;
-    this.primary = DC.classes[this.charClass].primary;
+    this.primary = DC.classes[this.charClass].primary;  // 主属性
 
-    this.str = 7 + this.info.level;
-    this.dex = 7 + this.info.level;
-    this.int = 7 + this.info.level;
-    this.vit = 7 + 2 * this.info.level;
+    // 角色的基础属性，由等级计算得来
+    this.str = 7 + this.info.level;     // 力量
+    this.dex = 7 + this.info.level;     // 敏捷
+    this.int = 7 + this.info.level;     // 智力
+    this.vit = 7 + 2 * this.info.level; // 体能
 
-    this.chc = 5;
-    this.chd = 50;
+    this.chc = 5;   // 暴击机率(Critical Hit Chance)
+    this.chd = 50;  // 暴击伤害加成(Critical Hit Damage)
     this.ias = 0;
 
     this.gems = {};
@@ -115,7 +117,7 @@
     this.special = {};
     this.skills = {};
     this.passives = {};
-    this[this.primary] += 2 * this.info.level;
+    this[this.primary] += 2 * this.info.level;    // 主属性值需要再加上等级*2
 
     this.info.mainhand = {
       speed: 1,
@@ -141,7 +143,7 @@
       this.manaregen = 50;
       break;
     case "barbarian":
-      this.maxfury = 100;
+      this.maxfury = 100;     // 最大的怒气值
       break;
     case "monk":
       this.maxspirit = 250;
@@ -588,6 +590,7 @@
     this.addPercent("thorns", "thorns_percent");
     this.info.thorns = (this.thorns || 0) * (1 + this[this.primary] / 100);
 
+    // 计算武器数据，如攻击力范围，dps,
     this.calcWeapon = function(info) {
       info.speed += (this.weaponaps || 0);
       info.speed *= 1 + 0.01 * (this.weaponaps_percent || 0);
@@ -614,6 +617,8 @@
     }
     this.info.critfactor = 1 + (0.01 * this.chc) * (0.01 * this.chd);
     this.calcWeapon(this.info.mainhand);
+
+    // 计算dps与攻击速度
     if (this.info.offhand) {
       this.calcWeapon(this.info.offhand);
       this.info.aps = 2 / (1 / this.info.mainhand.speed + 1 / this.info.offhand.speed);
@@ -756,10 +761,14 @@
     DC.trigger("updateStats");
   }
   function computeStats(getSlot, saveCache) {
+
+    // 创建一个新的状态实例
     var stats = new Stats();
     if (saveCache) {
       statCache = stats;
     }
+
+    // 加载默认的道具
     stats.loadItems(getSlot);
     if (DC.addSkillBonuses) {
       DC.addSkillBonuses(stats);
